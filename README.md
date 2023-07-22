@@ -10,7 +10,7 @@
    composer install
    ```
 
-3. Agregar un archivo llamado `.env` en la carpeta "backend" del proyecto con la siguiente estructura:
+3. Agregar un archivo `.env` en la carpeta "backend" del proyecto con la siguiente estructura, ajustarlo si se requiere:
 
    ```plaintext
    HOST=localhost
