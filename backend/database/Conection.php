@@ -14,7 +14,6 @@ class Database
     private $db_name;
     private $db_user;
     private $db_password;
-    private $databaseCreated;
 
     // Datos de conexión a la base de datos
 
@@ -26,7 +25,6 @@ class Database
         $this->db_name = $_ENV['DB_NAME'];
         $this->db_user = $_ENV['DB_USER'];
         $this->db_password = $_ENV['DB_PASSWORD'];
-        $this->databaseCreated = false;
     }
 
     // Método público para obtener la única instancia de la conexión
@@ -41,27 +39,22 @@ class Database
     // Método público para obtener la conexión
     public function getConnection()
     {
-        if (!$this->databaseCreated) {
-            // Lógica para crear la base de datos si no existe
-            try {
-                // Crear la conexión sin especificar la base de datos
-                $this->connection = new PDO("pgsql:host={$this->host};port={$this->port};user={$this->db_user};password={$this->db_password}");
-                $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // Lógica para crear la base de datos si no existe
+        try {
+            // Crear la conexión sin especificar la base de datos
+            $this->connection = new PDO("pgsql:host={$this->host};port={$this->port};user={$this->db_user};password={$this->db_password}");
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                // Crear la base de datos si no existe
-                $this->createDatabaseIfNotExists();
+            // Crear la base de datos si no existe
+            $this->createDatabaseIfNotExists();
 
-                $this->databaseCreated = true; // Cambiar la bandera para indicar que la base de datos ha sido creada
-            } catch (PDOException $e) {
-                echo 'Error de conexión o creación de base de datos: ' . $e->getMessage();
-                exit;
-            }
-        } else {
-            // Si la base de datos ya ha sido creada, simplemente obtenemos la conexión
+            // cambio de conexion con la base de datos creada
             $this->connection = new PDO("pgsql:host={$this->host};port={$this->port};dbname={$this->db_name};user={$this->db_user};password={$this->db_password}");
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-        }
+        } catch (PDOException $e) {
+            echo 'Error de conexión o creación de base de datos: ' . $e->getMessage();
+            exit;
+        }   
 
         return $this->connection;
     }
@@ -98,18 +91,25 @@ class Database
             )";
             $pdo->exec($createQuery);
 
-            // Llenar la tabla con 10 registros aleatorios con rutas de imágenes reales
-            for ($i = 1; $i <= 10; $i++) {
-                $nombre = 'Película ' . $i;
-                $genero = 'Género ' . $i;
-                $clasificacion = 'Clasificación ' . $i;
-                $anioLanzamiento = rand(2000, 2023);
-                $imagen = "imagenes_peliculas/pelicula_$i.jpg"; // Ruta de la imagen real de la película
+            // Consulta SQL para contar el número de registros en la tabla
+            $countQuery = "SELECT COUNT(*) FROM $tableName";
+            $stmt = $pdo->query($countQuery);
+            $rowCount = $stmt->fetchColumn();
+            
+            // Llenar la tabla con 10 registros aleatorios con rutas de imágenes reales si esta vacia
+            if ($rowCount === 0) {
+                for ($i = 1; $i <= 10; $i++) {
+                    $nombre = 'Película ' . $i;
+                    $genero = 'Género ' . $i;
+                    $clasificacion = 'Clasificación ' . $i;
+                    $anioLanzamiento = rand(2000, 2023);
+                    $imagen = "pelicula_$i.jpg"; // Ruta de la imagen real de la película
 
-                // Consulta SQL para insertar un registro en la tabla
-                $insertQuery = "INSERT INTO $tableName (nombre, genero, clasificacion, anio_lanzamiento, imagen)
-                                VALUES ('$nombre', '$genero', '$clasificacion', $anioLanzamiento, '$imagen')";
-                $pdo->exec($insertQuery);
+                    // Consulta SQL para insertar un registro en la tabla
+                    $insertQuery = "INSERT INTO $tableName (nombre, genero, clasificacion, anio_lanzamiento, imagen)
+                                    VALUES ('$nombre', '$genero', '$clasificacion', $anioLanzamiento, '$imagen')";
+                    $pdo->exec($insertQuery);
+                }
             }
             
             return true;

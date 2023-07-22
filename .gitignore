@@ -3,7 +3,7 @@
 Thumbs.db
 
 # Ignorar directorio donde se guardan las dependencias de Composer
-/vendor/
+*/vendor/
 
 # Ignorar el archivo de configuración de Composer
 composer.lock
@@ -50,5 +50,5 @@ composer.lock
 /.phpunit.result.cache
 
 # Ignorar archivos de configuración de Apache y Nginx
-/.htaccess
+*/.htaccess
 /nginx.conf

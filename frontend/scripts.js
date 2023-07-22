@@ -7,7 +7,7 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
     const password = document.getElementById('password').value;
 
     // Enviar una solicitud al backend utilizando Fetch API
-    fetch('http://localhost/backend/src/controllers/login.php', {
+    fetch('http://localhost/solati/backend/src/controllers/login.controller.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
         if (data.success) {    
             if (data.loggedIn) {
                 // Redirigir a la página de bienvenida
-                window.location.href = "ruta_de_bienvenida.html";
+                window.location.href = "views/bienvenida.html";
             } else {
                 // Mostrar mensaje de error si este no se muestra ya
                 if (!errorShown) {

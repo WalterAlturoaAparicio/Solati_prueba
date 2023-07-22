@@ -3,7 +3,7 @@ require_once '../../database/Conection.php';
 
 class PeliculaDAO
 {
-    private $db;
+    public $db;
 
     public function __construct()
     {
@@ -27,8 +27,6 @@ class PeliculaDAO
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
-            // Manejo de error en caso de fallo
-            // Devolver mensaje de error o lanzar excepción según sea necesario
             return false;
         }
     }
@@ -36,13 +34,17 @@ class PeliculaDAO
     // Método para obtener todas las películas de la base de datos
     public function obtenerTodasPeliculas()
     {
-        $sql = "SELECT * FROM pelicula";
-        $stmt = $this->db->prepare($sql);
-
-        $stmt->execute();
-        $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $peliculas;
+        try {
+            $sql = "SELECT * FROM pelicula";
+            $stmt = $this->db->prepare($sql);
+    
+            $stmt->execute();
+            $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+            return $peliculas;
+        } catch (PDOException $e) {
+            return false;
+        }
     }
 
     // Método para obtener una película por su ID
@@ -69,8 +71,6 @@ class PeliculaDAO
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
-            // Manejo de error en caso de fallo
-            // Devolver mensaje de error o lanzar excepción según sea necesario
             return false;
         }
     }

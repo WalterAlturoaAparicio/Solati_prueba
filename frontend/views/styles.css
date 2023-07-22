@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #071952;
+    color: #97FEED;
+}
+
+/* Eliminamos display: flex y align-items: center para que el contenido se muestre en su flujo natural */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+}
+
+.welcome-container {
+    text-align: center;
+    background-color: #0B666A;
+    padding: 40px;
+    border-radius: 10px;
+    margin: 20px auto; /* Centrar el contenedor horizontalmente */
+    max-width: 600px; /* Establecer un ancho máximo para el contenedor */
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #35A29F;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+.message {
+    font-size: 1rem;
+    color: #0B666A;
+    margin-top: 20px;
+}
+
+.table-container {
+    background-color: #0B666A;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto; 
+    max-width: 700px; 
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #97FEED;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #35A29F;
+    color: #071952;
+}
+
+td img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+button {
+    background-color: #071952;
+    color: #97FEED;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #35A29F;
+}
