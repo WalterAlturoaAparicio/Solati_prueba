@@ -3,9 +3,10 @@
 
 1. Clonar el repositorio en la carpeta donde tengas el servidor web (por ejemplo, Apache o Nginx), o puedes descargar el proyecto y descomprimirlo en la ubicación deseada.
 
-2. Ejecutar el siguiente comando para instalar las dependencias del proyecto:
+2. Ejecutar los siguientes comandos para instalar las dependencias del proyecto en backend:
 
    ```
+   cd solati/backend
    composer install
    ```
 
