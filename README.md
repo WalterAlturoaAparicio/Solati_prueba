@@ -1,0 +1,24 @@
+# Solati_prueba
+## Instrucciones para configurar el proyecto
+
+1. Clonar el repositorio en la carpeta donde tengas el servidor web (por ejemplo, Apache o Nginx), o puedes descargar el proyecto y descomprimirlo en la ubicación deseada.
+
+2. Ejecutar el siguiente comando para instalar las dependencias del proyecto:
+
+   ```
+   composer install
+   ```
+
+3. Agregar un archivo llamado `.env` en la carpeta "backend" del proyecto con la siguiente estructura:
+
+   ```plaintext
+   HOST=localhost
+   PORT=5432
+   DB_NAME=db_prueba_solati
+   DB_USER=root
+   DB_PASSWORD=
+   ```
+
+   Asegúrate de completar la información para `DB_PASSWORD` con la contraseña correspondiente si es necesaria.
+
+Con estos pasos, el proyecto estará configurado y listo para su funcionamiento y conexión a la base de datos.
