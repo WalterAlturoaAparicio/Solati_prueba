@@ -1,0 +1,54 @@
+# Ignorar directorios y archivos generados por el sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar directorio donde se guardan las dependencias de Composer
+vendor
+
+# Ignorar el archivo de configuración de Composer
+composer.lock
+
+# Ignorar el directorio donde se guardan las dependencias de npm o Yarn
+/node_modules/
+/yarn.lock
+
+# Ignorar los archivos de configuración locales (por ejemplo, para entornos de desarrollo)
+.env
+.env.*
+*.env
+
+# Ignorar los archivos de caché y sesiones de PHP
+/var/cache/*
+/var/sessions/*
+
+# Ignorar los archivos de logs de PHP
+/var/log/*
+
+# Ignorar los archivos de caché y sesiones de Symfony (si estás utilizando el framework Symfony)
+/var/*cache*/
+/var/sessions/*
+
+# Ignorar los archivos generados por IDEs o editores de texto
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Ignorar archivos de respaldo y temporales
+*~
+*.bak
+*.tmp
+
+# Ignorar archivos de compilación o build
+/build/
+/dist/
+
+# Ignorar archivos de prueba
+/tests/
+/phpunit.xml
+/phpunit.xml.dist
+/.phpunit.result.cache
+
+# Ignorar archivos de configuración de Apache y Nginx
+/.htaccess
+/nginx.conf
