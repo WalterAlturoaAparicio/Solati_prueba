@@ -23,4 +23,4 @@
    La conexion que se utiliza es postgreSQL para tenerla instalada previamente.
 
 Con estos pasos, el proyecto estará configurado y listo para su funcionamiento y conexión a la base de datos.
-Solo ingresa al http://localhost/solati/frontend
+Solo ingresa al http://localhost/solati_prueba/frontend
